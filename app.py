@@ -183,7 +183,7 @@ with tabs[2]:
         wants_to_invest_more = st.radio(lang["planner_inputs"]["wants_to_invest_more"], lang["planner_inputs"]["wants_to_invest_more_options"])
         initial_savings = st.number_input(lang["planner_inputs"]["initial_savings"], 0, 1_000_000, 20000)
 
-
+    # --- Projection Calculation ---
     import pandas as pd
     import numpy as np
     import altair as alt
@@ -195,17 +195,14 @@ with tabs[2]:
 
     years = list(range(0, forecast_years + 1))
     age_projection = [age + y for y in years]
-
     df = pd.DataFrame({"Year": age_projection})
 
     def grow(value, rate):
         return [value * ((1 + rate / 100) ** y) for y in years]
 
-    # --- Hobby Costs AI Mapping ---
     hobby_cost_map = {"Travel": 6000, "Sports": 2000, "Gaming": 1000, "Reading": 500, "Art": 1200, "Other": 1500}
     total_hobby_expense = sum([hobby_cost_map[h] for h in hobbies]) if hobbies else 0
 
-    # --- AI Salary Adjustment Based on Ambition Text ---
     if "startup" in career_goal.lower():
         career_multiplier = 1.8
     elif "promotion" in career_goal.lower():
@@ -239,7 +236,6 @@ with tabs[2]:
 
     df["Net Worth (Base Case)"] = net_worth
 
-    # Monte Carlo Sim
     simulations = 50
     mc_df = pd.DataFrame({"Year": age_projection})
     np.random.seed(42)
@@ -254,7 +250,7 @@ with tabs[2]:
             net.append(max(new_val, 0))
         mc_df[f"Sim {i+1}"] = net
 
-    st.subheader("📊 Financial Projection Overview")
+    st.subheader(lang["projection_overview"])
 
     base_chart = alt.Chart(df).mark_line().encode(
         x="Year",
@@ -277,45 +273,10 @@ with tabs[2]:
         y=alt.Y("CHF:Q", title="Annual Amount (CHF)"),
         color=alt.Color("Type:N", title=""),
         tooltip=["Year", "Type", "CHF"]
-    ).properties(title="💵 Income vs Expenses")
+    ).properties(title=lang["income_vs_expenses_chart"])
 
     st.altair_chart(income_vs_expenses_chart, use_container_width=True)
     st.altair_chart((mc_chart + base_chart).properties(title="📈 Net Worth Projection (Monte Carlo Simulation)"), use_container_width=True)
-
-    # --- Summary ---
-    st.subheader("📝 Summary & Recommendations")
-    st.markdown(f"""
-    - Final projected **net worth**: `CHF {int(net_worth[-1]):,}`
-    - Estimated **income at age {age + forecast_years}**: `CHF {int(income[-1]):,}`
-    - Projected **expenses at that time**: `CHF {int(df['Expenses'].iloc[-1]):,}`
-    """)
-
-    # Stability Score
-    savings_rate = (income[0] - total_expenses * 12) / income[0]
-    score = 5
-    score += 1 if has_3a == "Yes" else 0
-    score += 1 if has_etfs == "Yes" else 0
-    score += 1 if savings_rate > 0.2 else 0
-    score += 1 if owns_home == "Yes" else 0
-    score = min(score, 10)
-
-    st.markdown("### ✅ Suggestions")
-    st.markdown(f"""
-    1. Keep increasing investment contributions to benefit from compounding.
-    2. Consider early retirement savings (3rd Pillar, ETFs) if not started.
-    3. Maintain a healthy gap between lifestyle cost and income growth.
-    4. 🪙 Your **Future Stability Score**: `{score}/10`
-    """)
-
-
-
-
-
-
-    st.subheader(lang["projection_overview"])
-
-    st.altair_chart(income_vs_expenses_chart, use_container_width=True)
-    st.altair_chart((mc_chart + base_chart).properties(title=lang["projection_overview"]), use_container_width=True)
 
     st.subheader(lang["summary_recommendations"])
     st.markdown(f"""
@@ -324,7 +285,15 @@ with tabs[2]:
     - Projected **expenses at that time**: `CHF {int(df['Expenses'].iloc[-1]):,}`
     """)
 
-    st.markdown(f"### {lang['suggestions']}")
+    savings_rate = (income[0] - total_expenses * 12) / income[0]
+    score = 5
+    score += 1 if has_3a == "Yes" else 0
+    score += 1 if has_etfs == "Yes" else 0
+    score += 1 if savings_rate > 0.2 else 0
+    score += 1 if owns_home == "Yes" else 0
+    score = min(score, 10)
+
+    st.markdown("### " + lang["suggestions"])
     st.markdown(f"""
     1. Keep increasing investment contributions to benefit from compounding.
     2. Consider early retirement savings (3rd Pillar, ETFs) if not started.
