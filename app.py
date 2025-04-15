@@ -131,57 +131,58 @@ with tabs[1]:
 
 # --- User Tab ---
 with tabs[2]:
-    st.header("🌱 Your Future Planner")
+    st.header(lang["planner_title"])
 
-    with st.expander("👤 Personal & Lifestyle Information"):
+    with st.expander(lang["planner_inputs"]["personal_info_expander"]):
         col1, col2 = st.columns(2)
         with col1:
-            age = st.number_input("🎂 Age", 18, 70, 30)
-            status = st.selectbox("💍 Relationship Status", ["Single", "Married", "Divorced", "Widowed"])
-            has_kids = st.radio("👶 Do you have children?", ["No", "Yes", "Planning to have"])
-            pets = st.multiselect("🐶 Pets", ["Dog", "Cat", "None", "Other"])
+            age = st.number_input(lang["planner_inputs"]["age"], 18, 70, 30)
+            status = st.selectbox(lang["planner_inputs"]["relationship_status"], lang["planner_inputs"]["relationship_status_options"])
+            has_kids = st.radio(lang["planner_inputs"]["has_kids"], lang["planner_inputs"]["has_kids_options"])
+            pets = st.multiselect(lang["planner_inputs"]["pets"], lang["planner_inputs"]["pets_options"])
         with col2:
-            hobbies = st.multiselect("🎨 Hobbies", ["Travel", "Sports", "Reading", "Gaming", "Art", "Other"])
-            wants_to_travel = st.radio("✈️ Travel frequency", ["Yes", "No", "Sometimes"])
-            career_field = st.selectbox("💼 Job Sector", ["Tech", "Finance", "Healthcare", "Education", "Other"])
-            current_salary = st.number_input("💵 Current Monthly Income (CHF)", 0, 300000, 7000)
+            hobbies = st.multiselect(lang["planner_inputs"]["hobbies"], lang["planner_inputs"]["hobbies_options"])
+            wants_to_travel = st.radio(lang["planner_inputs"]["wants_to_travel"], lang["planner_inputs"]["wants_to_travel_options"])
+            career_field = st.selectbox(lang["planner_inputs"]["career_field"], lang["planner_inputs"]["career_field_options"])
+            current_salary = st.number_input(lang["planner_inputs"]["current_salary"], 0, 300000, 7000)
 
-    with st.expander("🏠 Living Expenses"):
+    with st.expander(lang["planner_inputs"]["expenses_expander"]):
         col1, col2 = st.columns(2)
         with col1:
-            rent = st.number_input("🏡 Monthly Rent / Mortgage", 0, 20000, 1500)
-            food = st.number_input("🍽️ Food & Groceries", 0, 10000, 600)
-            transport = st.number_input("🚗 Transport", 0, 5000, 300)
+            rent = st.number_input(lang["planner_inputs"]["rent"], 0, 20000, 1500)
+            food = st.number_input(lang["planner_inputs"]["food"], 0, 10000, 600)
+            transport = st.number_input(lang["planner_inputs"]["transport"], 0, 5000, 300)
         with col2:
-            entertainment = st.number_input("🎭 Entertainment & Hobbies", 0, 5000, 400)
-            healthcare = st.number_input("🩺 Healthcare & Insurance", 0, 2000, 350)
-            misc = st.number_input("🧾 Other Expenses", 0, 3000, 300)
+            entertainment = st.number_input(lang["planner_inputs"]["entertainment"], 0, 5000, 400)
+            healthcare = st.number_input(lang["planner_inputs"]["healthcare"], 0, 2000, 350)
+            misc = st.number_input(lang["planner_inputs"]["misc"], 0, 3000, 300)
 
     total_expenses = rent + food + transport + entertainment + healthcare + misc
-    st.markdown(f"**💸 Total Monthly Living Cost:** `CHF {total_expenses:,}`")
-    st.markdown("💭 _These preferences help personalize your financial roadmap more deeply._")
+    st.markdown(f"**{lang['planner_inputs']['total_expenses_label']}:** `CHF {total_expenses:,}`")
+    st.markdown(lang["planner_inputs"]["preferences_note"])
 
-    with st.expander("🧭 Life Goals & Future Plans"):
+    with st.expander(lang["planner_inputs"]["goals_expander"]):
         col1, col2 = st.columns(2)
         with col1:
-            wants_children = st.radio("👶 Planning to have (more) children?", ["No", "Yes", "Maybe"])
-            dream_trip = st.text_input("✈️ Dream travel destination or trip?")
-            travel_budget = st.slider("💸 Annual Travel Budget (CHF)", 0, 30000, 5000, step=500)
-            major_purchase = st.selectbox("🚗 Next big purchase you're planning?", ["Home", "Car", "Education", "Startup", "None"])
+            wants_children = st.radio(lang["planner_inputs"]["wants_children"], lang["planner_inputs"]["wants_children_options"])
+            dream_trip = st.text_input(lang["planner_inputs"]["dream_trip"])
+            travel_budget = st.slider(lang["planner_inputs"]["travel_budget"], 0, 30000, 5000, step=500)
+            major_purchase = st.selectbox(lang["planner_inputs"]["major_purchase"], lang["planner_inputs"]["major_purchase_options"])
         with col2:
-            career_goal = st.text_area("💼 Career ambitions or job changes in the next 5–10 years?")
-            lifestyle_upgrades = st.multiselect("🌟 Desired lifestyle upgrades", ["Luxury Living", "Work Flexibility", "More Leisure Time", "Move Abroad", "None"])
-            wellness_goals = st.radio("🧘‍♀️ Focus on wellness or mental health?", ["Yes", "No", "Trying to prioritize"])
+            career_goal = st.text_area(lang["planner_inputs"]["career_goal"])
+            lifestyle_upgrades = st.multiselect(lang["planner_inputs"]["lifestyle_upgrades"], lang["planner_inputs"]["lifestyle_upgrades_options"])
+            wellness_goals = st.radio(lang["planner_inputs"]["wellness_goals"], lang["planner_inputs"]["wellness_goals_options"])
 
-    with st.expander("🎯 Goals & Investment Preferences"):
-        wants_to_buy_house = st.radio("🏠 Planning to buy a house?", ["Yes", "No", "Maybe"])
-        retirement_age = st.slider("🎉 Desired Retirement Age", 55, 70, 65)
-        owns_home = st.radio("🏘️ Owns home now?", ["Yes", "No"])
-        has_3a = st.radio("💼 Has 3rd Pillar?", ["Yes", "No"])
-        has_etfs = st.radio("📈 Invests in ETFs/Index Funds?", ["Yes", "No"])
-        other_assets = st.multiselect("💰 Other Assets", ["Real Estate", "Crypto", "Business", "High-yield Savings", "None"])
-        wants_to_invest_more = st.radio("➕ Increase Investment?", ["Yes", "No", "Maybe"])
-        initial_savings = st.number_input("💰 Current Savings & Investments (CHF)", 0, 1_000_000, 20000)
+    with st.expander(lang["planner_inputs"]["investment_expander"]):
+        wants_to_buy_house = st.radio(lang["planner_inputs"]["wants_to_buy_house"], lang["planner_inputs"]["wants_to_buy_house_options"])
+        retirement_age = st.slider(lang["planner_inputs"]["retirement_age"], 55, 70, 65)
+        owns_home = st.radio(lang["planner_inputs"]["owns_home"], lang["planner_inputs"]["owns_home_options"])
+        has_3a = st.radio(lang["planner_inputs"]["has_3a"], lang["planner_inputs"]["has_3a_options"])
+        has_etfs = st.radio(lang["planner_inputs"]["has_etfs"], lang["planner_inputs"]["has_etfs_options"])
+        other_assets = st.multiselect(lang["planner_inputs"]["other_assets"], lang["planner_inputs"]["other_assets_options"])
+        wants_to_invest_more = st.radio(lang["planner_inputs"]["wants_to_invest_more"], lang["planner_inputs"]["wants_to_invest_more_options"])
+        initial_savings = st.number_input(lang["planner_inputs"]["initial_savings"], 0, 1_000_000, 20000)
+
 
     import pandas as pd
     import numpy as np
@@ -299,6 +300,31 @@ with tabs[2]:
     score = min(score, 10)
 
     st.markdown("### ✅ Suggestions")
+    st.markdown(f"""
+    1. Keep increasing investment contributions to benefit from compounding.
+    2. Consider early retirement savings (3rd Pillar, ETFs) if not started.
+    3. Maintain a healthy gap between lifestyle cost and income growth.
+    4. 🪙 Your **Future Stability Score**: `{score}/10`
+    """)
+
+
+
+
+
+
+    st.subheader(lang["projection_overview"])
+
+    st.altair_chart(income_vs_expenses_chart, use_container_width=True)
+    st.altair_chart((mc_chart + base_chart).properties(title=lang["projection_overview"]), use_container_width=True)
+
+    st.subheader(lang["summary_recommendations"])
+    st.markdown(f"""
+    - Final projected **net worth**: `CHF {int(net_worth[-1]):,}`
+    - Estimated **income at age {age + forecast_years}**: `CHF {int(income[-1]):,}`
+    - Projected **expenses at that time**: `CHF {int(df['Expenses'].iloc[-1]):,}`
+    """)
+
+    st.markdown(f"### {lang['suggestions']}")
     st.markdown(f"""
     1. Keep increasing investment contributions to benefit from compounding.
     2. Consider early retirement savings (3rd Pillar, ETFs) if not started.
