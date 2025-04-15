@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 from PIL import Image
-from idiomes import translations
+from idiomes import translations  # Import translations from idiomes.py
 
 # --- Page Config ---
 st.set_page_config(page_title="Swiss Finance with Alex", layout="wide")
@@ -16,13 +16,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Language Selection ---
-language = st.sidebar.selectbox("🌍 Choose Language", list(translations.keys()))
-lang = translations[language]
+language = st.sidebar.selectbox("🌍 Choose Language", list(translations.keys()))  # Language selection dropdown
+lang = translations[language]  # Get the translations for the selected language
 
 # --- Header ---
 st.title(lang["title"])
 st.subheader(lang["subtitle"])
-st.markdown("[📅 Book a free call](mailto:alex@swissfinance.ch)")
+st.markdown(f"[📅 {lang['book_call']}]({lang['book_call_link']})")
 
 # Optional illustration - Alex doll as guide
 try:
@@ -37,20 +37,9 @@ tabs = st.tabs([lang["about_me"], lang["topics"], lang["resources"], lang["user"
 # --- About Tab ---
 with tabs[0]:
     st.header(lang["about_me"])
-    st.write("""
-    My name is Alex, and I’m passionate about helping people confidently navigate the Swiss financial landscape. Whether you’re a local or new to Switzerland, I simplify complex topics like retirement planning, health insurance, tax savings, and everyday budgeting.
-
-    With years of experience working with expats and Swiss citizens alike, I provide tailored advice that works in real life—not just on paper.
-    """)
+    st.write(lang["about_me_text"])
     st.subheader(lang["what_i_help"])
-    st.markdown("""
-    - Understanding and optimizing your Swiss 3rd pillar (Säule 3a)
-    - Comparing Krankenkasse models and saving on health insurance
-    - Budgeting effectively in high-cost cities
-    - Filing taxes and maximizing deductions
-    - Financial planning for families, freelancers, and expats
-    - Intro to ETF investing in Switzerland
-    """)
+    st.markdown(lang["what_i_help_text"])
 
 # --- Topics Tab ---
 with tabs[1]:
@@ -71,73 +60,73 @@ with tabs[1]:
         st.markdown(f"🔗 [Official Link]({link})")
 
     display_topic(
-        "Swiss 3rd Pillar Explained (Säule 3a)",
-        "Discover how to reduce your taxes while saving for retirement. Learn the difference between banking vs. insurance options—and why not all 3a accounts are created equal.",
-        "Tax-advantaged growth over time",
-        "https://www.ch.ch/en/retirement/third-pillar/"
+        lang["topic_1_title"],
+        lang["topic_1_summary"],
+        lang["topic_1_chart_caption"],
+        lang["topic_1_link"]
     )
 
     display_topic(
-        "How Krankenkasse Really Works",
-        "Confused by Swiss health insurance? Let’s break down basic vs. supplemental coverage, models like Telmed & HMO, and how to save CHF 1,000+ per year.",
-        "Annual savings potential with model comparison",
-        "https://www.ch.ch/en/health/health-insurance/"
+        lang["topic_2_title"],
+        lang["topic_2_summary"],
+        lang["topic_2_chart_caption"],
+        lang["topic_2_link"]
     )
 
     display_topic(
-        "Investing in Switzerland 101",
-        "Learn how to start investing with just CHF 100/month. We’ll compare ETFs vs. savings, explain risk levels, and show you how to open your first Swiss brokerage account.",
-        "Growth comparison: ETF vs. Savings",
-        "https://www.finanztipp.ch/etf/"
+        lang["topic_3_title"],
+        lang["topic_3_summary"],
+        lang["topic_3_chart_caption"],
+        lang["topic_3_link"]
     )
 
     display_topic(
-        "Tax Deductions You’re Probably Missing",
-        "From 3a contributions to commuting costs—let’s make your tax declaration work for you. These tips could mean hundreds back in your pocket.",
-        "Potential tax savings chart",
-        "https://www.ch.ch/en/taxes/deductions/"
+        lang["topic_4_title"],
+        lang["topic_4_summary"],
+        lang["topic_4_chart_caption"],
+        lang["topic_4_link"]
     )
 
     display_topic(
-        "Monthly Budgeting in Switzerland",
-        "Life in Switzerland isn’t cheap—but budgeting doesn’t have to be hard. Here’s a simple way to structure your monthly income using the 50/30/20 rule adapted for Swiss costs.",
-        "Example budget allocation",
-        "https://www.ch.ch/en/money-budget/"
+        lang["topic_5_title"],
+        lang["topic_5_summary"],
+        lang["topic_5_chart_caption"],
+        lang["topic_5_link"]
     )
 
     display_topic(
-        "The True Cost of Living Alone in CH",
-        "Want to move out? Let's break down rent, insurance, transport, and food so you can realistically plan a solo life in Zurich, Geneva, or even Lugano.",
-        "Estimated cost breakdown for solo living",
-        "https://www.ch.ch/en/living/"
+        lang["topic_6_title"],
+        lang["topic_6_summary"],
+        lang["topic_6_chart_caption"],
+        lang["topic_6_link"]
     )
 
     display_topic(
-        "Krankenkasse Change Deadline: What You Need to Know",
-        "Every November, you have a chance to save. This post walks you through the deadline, how to compare premiums, and send a Kündigung letter.",
-        "Savings from timely plan changes",
-        "https://www.ch.ch/en/health/health-insurance/change-insurance/"
+        lang["topic_7_title"],
+        lang["topic_7_summary"],
+        lang["topic_7_chart_caption"],
+        lang["topic_7_link"]
     )
 
     display_topic(
-        "Pillar 3a: Bank or Insurance?",
-        "Weighing your options? Learn why one offers more flexibility, while the other might lock you in for decades. Alex helps you decide what suits your goals.",
-        "Comparison of flexibility and returns",
-        "https://www.moneyland.ch/en/3a-pillar-bank-or-insurance"
+        lang["topic_8_title"],
+        lang["topic_8_summary"],
+        lang["topic_8_chart_caption"],
+        lang["topic_8_link"]
     )
 
     display_topic(
-        "Swiss Franc Stability & Investing",
-        "Why is the CHF considered “safe”? What does that mean for your long-term investment strategy? Understand currency strength in simple terms.",
-        "CHF vs. global currency performance",
-        "https://www.snb.ch/en/"
+        lang["topic_9_title"],
+        lang["topic_9_summary"],
+        lang["topic_9_chart_caption"],
+        lang["topic_9_link"]
     )
 
     display_topic(
-        "Expats: How to Navigate Swiss Finance",
-        "Just moved to CH? Here’s a quick-start guide on health insurance, mandatory coverage, and how to start saving or investing even as a newcomer.",
-        "Newcomer financial onboarding path",
-        "https://www.ch.ch/en/moving-to-switzerland/"
+        lang["topic_10_title"],
+        lang["topic_10_summary"],
+        lang["topic_10_chart_caption"],
+        lang["topic_10_link"]
     )
 
 # --- User Tab ---
