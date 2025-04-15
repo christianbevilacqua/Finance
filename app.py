@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 from PIL import Image
+from idiomes import translations
 
 # --- Page Config ---
 st.set_page_config(page_title="Swiss Finance with Alex", layout="wide")
@@ -15,57 +16,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Language Selection ---
-language = st.sidebar.selectbox("🌍 Choose Language", ["English", "Deutsch", "Français", "Italiano", "Español"])
-
-translations = {
-    "English": {
-        "title": "🇨🇭 Swiss Finance Made Simple",
-        "subtitle": "Hi, I'm Alex. I help you understand investments, Krankenkasse & taxes in Switzerland.",
-        "about_me": "👋 About Me",
-        "what_i_help": "What I Can Help With",
-        "topics": "📘 Financial Topics",
-        "resources": "📂 Free Tools & Guides",
-        "user": "📈 Personal Finance Projection"
-        
-    },
-    "Deutsch": {
-        "title": "🇨🇭 Schweizer Finanzen einfach erklärt",
-        "subtitle": "Hallo, ich bin Alex. Ich helfe dir, Investitionen, Krankenkasse und Steuern in der Schweiz zu verstehen.",
-        "about_me": "👋 Über mich",
-        "what_i_help": "Womit ich helfen kann",
-        "topics": "📘 Finanzthemen",
-        "resources": "📂 Kostenlose Tools & Leitfäden",
-        "user": "📈 Personal Finance Projection"
-    },
-    "Français": {
-        "title": "🇨🇭 La finance suisse simplifiée",
-        "subtitle": "Salut, je suis Alex. Je t'aide à comprendre les investissements, l'assurance maladie et les impôts en Suisse.",
-        "about_me": "👋 À propos de moi",
-        "what_i_help": "Ce que je peux vous aider à comprendre",
-        "topics": "📘 Sujets financiers",
-        "resources": "📂 Outils et guides gratuits",
-        "user": "📈 Personal Finance Projection"
-    },
-    "Italiano": {
-        "title": "🇨🇭 Finanza Svizzera Semplificata",
-        "subtitle": "Ciao, sono Alex. Ti aiuto a capire investimenti, cassa malati e tasse in Svizzera.",
-        "about_me": "👋 Chi sono",
-        "what_i_help": "Come posso aiutarti",
-        "topics": "📘 Argomenti finanziari",
-        "resources": "📂 Strumenti e guide gratuite",
-        "user": "📈 Personal Finance Projection"
-    },
-    "Español": {
-        "title": "🇨🇭 Finanzas suizas simplificadas",
-        "subtitle": "Hola, soy Alex. Te ayudo a entender inversiones, Krankenkasse y impuestos en Suiza.",
-        "about_me": "👋 Sobre mí",
-        "what_i_help": "En qué puedo ayudarte",
-        "topics": "📘 Temas financieros",
-        "resources": "📂 Herramientas y guías gratuitas",
-        "user": "📈 Personal Finance Projection"
-    }
-}
-
+language = st.sidebar.selectbox("🌍 Choose Language", list(translations.keys()))
 lang = translations[language]
 
 # --- Header ---
