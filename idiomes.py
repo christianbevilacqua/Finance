@@ -90,5 +90,23 @@ translations = {
         "projection_overview": "📊 Vista de la proyección financiera",
         "summary": "📝 Resumen y Recomendaciones",
         "suggestions": "✅ Sugerencias"
+    },
+    "Català": {
+        "title": "🇨🇭 Finances suïsses fetes fàcils",
+        "subtitle": "Hola, soc l'Alex. T'ajudo a entendre les inversions, la seguretat mèdica i els impostos a Suïssa.",
+        "about_me": "👋 Sobre mi",
+        "what_i_help": "En què et puc ajudar",
+        "topics": "📘 Temes financers",
+        "resources": "📂 Eines i guies gratuïtes",
+        "user": "📈 Projecció financera personal",
+        "book_call": "📅 Reserva una trucada gratuïta",
+        "planner_title": "🌱 El teu planificador de futur",
+        "personal_info": "👤 Informació personal i estil de vida",
+        "living_expenses": "🏠 Despeses de vida",
+        "life_goals": "🧭 Objectius i plans de futur",
+        "investment_preferences": "🎯 Objectius i preferències d'inversió",
+        "projection_overview": "📊 Resum de la projecció financera",
+        "summary": "📝 Resum i recomanacions",
+        "suggestions": "✅ Suggeriments"
     }
 }
