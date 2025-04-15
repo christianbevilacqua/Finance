@@ -189,11 +189,6 @@ with tabs[1]:
         "https://www.ch.ch/en/moving-to-switzerland/"
     )
 
-# --- Resources Tab ---
-with tabs[2]:
-    st.header(lang["resources"])
-    st.write("Coming soon: downloadable guides, checklists and calculators!")
-
 # --- User Tab ---
 with tabs[3]:
     st.header("🌱 Your Future Planner")
