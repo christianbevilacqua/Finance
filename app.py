@@ -130,7 +130,7 @@ with tabs[1]:
 
 
 # --- User Tab ---
-with tabs[3]:
+with tabs[2]:
     st.header("🌱 Your Future Planner")
 
     with st.expander("👤 Personal & Lifestyle Information"):
