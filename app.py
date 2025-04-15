@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 from PIL import Image
-from idiomes import translations  # Import translations from idiomes.py
-
+from idiomes import translations  
 # --- Page Config ---
 st.set_page_config(page_title="Swiss Finance with Alex", layout="wide")
 st.markdown("""
@@ -128,6 +127,7 @@ with tabs[1]:
         lang["topic_10_chart_caption"],
         lang["topic_10_link"]
     )
+
 
 # --- User Tab ---
 with tabs[3]:
