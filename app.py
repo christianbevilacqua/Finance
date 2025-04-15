@@ -21,7 +21,7 @@ lang = translations[language]  # Get the translations for the selected language
 # --- Header ---
 st.title(lang["title"])
 st.subheader(lang["subtitle"])
-st.markdown(f"[📅 {lang['book_call']}]({lang['book_call_link']})")
+st.markdown("[📅 Book a free call](mailto:christian.bevilacqua@svag.ch)")
 
 # Optional illustration - Alex doll as guide
 try:
