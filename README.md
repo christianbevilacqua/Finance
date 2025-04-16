@@ -1,7 +1,3 @@
----
-title: "Swiss Finance with Alex"
-output: github_document
----
 
 # 📊 Swiss Finance with Alex
 
